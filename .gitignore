@@ -2,4 +2,6 @@
 *.aab
 *.keystore
 .godot/
-export_presets.cfg
+Godot_*
+*.zip
+!export_presets.cfg
