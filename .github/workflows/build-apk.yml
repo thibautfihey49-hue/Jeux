@@ -24,8 +24,8 @@ jobs:
           mkdir -p ~/.local/share/godot/export_templates/4.7.1.stable
           unzip -q -j Godot_v4.7.1-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.7.1.stable
       
-      - name: Compiler APK
-        run: ./Godot_v4.7.1-stable_linux.x86_64 --headless --path . --export-release "Android" MondeOuvert.apk
+      - name: Compiler APK (MODE DEBUG)
+        run: ./Godot_v4.7.1-stable_linux.x86_64 --headless --path . --export-debug "Android" MondeOuvert.apk
       
       - uses: actions/upload-artifact@v4
         with: { name: MondeOuvert-APK, path: MondeOuvert.apk, retention-days: 30 }
