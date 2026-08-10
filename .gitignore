@@ -4,3 +4,4 @@
 .godot/
 Godot_*
 *.zip
+!export_presets.cfg
