@@ -8,10 +8,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 📦 Installer ADB
+      - name: 📦 Installer + démarrer ADB
         run: |
           sudo apt-get update
           sudo apt-get install -y android-tools-adb
+          adb start-server
+          adb devices
 
       - name: 📦 Godot 4.7.1 + Templates
         run: |
