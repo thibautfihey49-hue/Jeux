@@ -1,7 +1,7 @@
 ; Engine configuration file
 [application]
 config/name="MondeOuvert_Exploration"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.7")
 run/main_scene="res://main.tscn"
 
 [display]

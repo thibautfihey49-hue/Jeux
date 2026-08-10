@@ -7,25 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: 📦 Godot + Modèles d'export
+      - name: Godot 4.7.1 + Templates
         run: |
-          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
-          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
-          
-          unzip -q Godot_v4.3-stable_linux.x86_64.zip
-          chmod +x Godot_v4.3-stable_linux.x86_64
-          
-          mkdir -p ~/.local/share/godot/export_templates/4.3.stable
-          unzip -q -j Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.3.stable
-
-      - name: 🏗️ Compilation APK
+          wget -q https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
+          wget -q https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz
+          unzip -q Godot_v4.7.1-stable_linux.x86_64.zip
+          chmod +x Godot_v4.7.1-stable_linux.x86_64
+          mkdir -p ~/.local/share/godot/export_templates/4.7.1.stable
+          unzip -q -j Godot_v4.7.1-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.7.1.stable
+      - name: Compiler APK
         run: |
-          ./Godot_v4.3-stable_linux.x86_64 --headless --export-release "Android" MondeOuvert.apk
-
-      - name: 📤 Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: MondeOuvert-APK
-          path: MondeOuvert.apk
-          retention-days: 30
+          ./Godot_v4.7.1-stable_linux.x86_64 --headless --path . \
+            --export-release "Android" MondeOuvert.apk \
+            --application-identifier com.mondeouvert.exploration \
+            --version-code 1 \
+            --version-name 1.0 \
+            --min-sdk-version 24 \
+            --target-sdk-version 33 \
+            --no-use-androidx
+      - uses: actions/upload-artifact@v4
+        with: { name: MondeOuvert-APK, path: MondeOuvert.apk, retention-days: 30 }
