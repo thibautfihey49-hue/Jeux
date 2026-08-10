@@ -8,24 +8,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: 📦 Godot 4.7.1 + Templates
+      - name: Godot + Templates
         run: |
           wget -q https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
           wget -q https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz
-          
           unzip -q Godot_v4.7.1-stable_linux.x86_64.zip
           chmod +x Godot_v4.7.1-stable_linux.x86_64
-          
           mkdir -p ~/.local/share/godot/export_templates/4.7.1.stable
           unzip -q -j Godot_v4.7.1-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.7.1.stable
 
-      - name: 🏗️ Compilation APK
-        run: |
-          ./Godot_v4.7.1-stable_linux.x86_64 --headless --no-window --export-release "Android" MondeOuvert.apk
+      - name: Compiler APK
+        run: ./Godot_v4.7.1-stable_linux.x86_64 --headless --no-adb --export-release "Android" MondeOuvert.apk
 
-      - name: 📤 Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: MondeOuvert-APK
-          path: MondeOuvert.apk
-          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with: { name: MondeOuvert-APK, path: MondeOuvert.apk, retention-days: 30 }
