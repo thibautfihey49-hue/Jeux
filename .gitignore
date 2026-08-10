@@ -1,0 +1,6 @@
+*.apk
+*.aab
+*.keystore
+.godot/
+Godot_*
+*.zip

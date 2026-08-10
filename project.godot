@@ -1,0 +1,22 @@
+; Engine configuration file
+[application]
+config/name="MondeOuvert_Exploration"
+config/features=PackedStringArray("4.3")
+run/main_scene="res://main.tscn"
+
+[display]
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/vsync_mode=1
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+
+[input]
+map/move_forward/trigger_names=PackedStringArray["key_w"]
+map/move_backward/trigger_names=PackedStringArray["key_s"]
+map/move_left/trigger_names=PackedStringArray["key_a"]
+map/move_right/trigger_names=PackedStringArray["key_d"]
+map/jump/trigger_names=PackedStringArray["key_space"]
