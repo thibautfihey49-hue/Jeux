@@ -18,8 +18,6 @@ jobs:
           
           mkdir -p ~/.local/share/godot/export_templates/4.3.stable
           unzip -q -j Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.3.stable
-          
-          ls -la ~/.local/share/godot/export_templates/4.3.stable/
 
       - name: 🏗️ Compilation APK
         run: |
