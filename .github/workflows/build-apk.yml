@@ -13,9 +13,9 @@ jobs:
           wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
           unzip -q Godot_v4.3-stable_linux.x86_64.zip
           chmod +x Godot_v4.3-stable_linux.x86_64
-          mkdir -p ~/.local/share/godot/templates/4.3.stable
-          unzip -q -j Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/templates/4.3.stable
-          ls -la ~/.local/share/godot/templates/4.3.stable/
+          mkdir -p ~/.local/share/godot/export_templates/4.3.stable
+          unzip -q -j Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.3.stable
+          ls -la ~/.local/share/godot/export_templates/4.3.stable/
       - name: Compiler APK
         run: ./Godot_v4.3-stable_linux.x86_64 --headless --export-release "Android" MondeOuvert.apk
       - uses: actions/upload-artifact@v4
