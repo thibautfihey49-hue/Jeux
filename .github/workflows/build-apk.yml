@@ -7,6 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Installer + démarrer ADB
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y android-tools-adb
+          adb start-server
+          sleep 2
       - name: Godot + Templates
         run: |
           wget -q https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
