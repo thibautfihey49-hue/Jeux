@@ -7,12 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Installer + démarrer ADB
         run: |
           sudo apt-get update
           sudo apt-get install -y android-tools-adb
           adb start-server
           sleep 2
+      
       - name: Godot + Templates
         run: |
           wget -q https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
@@ -21,7 +23,9 @@ jobs:
           chmod +x Godot_v4.7.1-stable_linux.x86_64
           mkdir -p ~/.local/share/godot/export_templates/4.7.1.stable
           unzip -q -j Godot_v4.7.1-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.7.1.stable
+      
       - name: Compiler APK
         run: ./Godot_v4.7.1-stable_linux.x86_64 --headless --path . --export-release "Android" MondeOuvert.apk
+      
       - uses: actions/upload-artifact@v4
         with: { name: MondeOuvert-APK, path: MondeOuvert.apk, retention-days: 30 }
