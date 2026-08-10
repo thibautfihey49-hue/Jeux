@@ -1,30 +1,21 @@
 name: Build APK Android
-
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
+  push: { branches: [main] }
+  workflow_dispatch: {}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Récupération du code
-        uses: actions/checkout@v4
-
-      - name: 📦 Téléchargement Godot 4.3
+      - uses: actions/checkout@v4
+      - name: Godot + Modèles d'export
         run: |
           wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
           unzip -q Godot_v4.3-stable_linux.x86_64.zip
           chmod +x Godot_v4.3-stable_linux.x86_64
-
-      - name: 🏗️ Compilation APK
-        run: |
-          ./Godot_v4.3-stable_linux.x86_64 --headless --export-release "Android" MondeOuvert.apk
-
-      - name: 📤 Upload de l'APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: MondeOuvert-APK
-          path: MondeOuvert.apk
-          retention-days: 30
+          mkdir -p ~/.local/share/godot/export_templates/4.3.stable
+          unzip -q Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.3.stable
+      - name: Compiler APK
+        run: ./Godot_v4.3-stable_linux.x86_64 --headless --export-release "Android" MondeOuvert.apk
+      - uses: actions/upload-artifact@v4
+        with: { name: MondeOuvert-APK, path: MondeOuvert.apk, retention-days: 30 }

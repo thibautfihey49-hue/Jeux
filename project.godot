@@ -15,8 +15,8 @@ renderer/rendering_method.mobile="gl_compatibility"
 textures/canvas_textures/default_texture_filter=0
 
 [input]
-map/move_forward/trigger_names=PackedStringArray["key_w"]
-map/move_backward/trigger_names=PackedStringArray["key_s"]
-map/move_left/trigger_names=PackedStringArray["key_a"]
-map/move_right/trigger_names=PackedStringArray["key_d"]
-map/jump/trigger_names=PackedStringArray["key_space"]
+map/move_forward={"deadzone": 0.5, "event": InputEventKey(physical_key=KEY_W, pressed=true)}
+map/move_backward={"deadzone": 0.5, "event": InputEventKey(physical_key=KEY_S, pressed=true)}
+map/move_left={"deadzone": 0.5, "event": InputEventKey(physical_key=KEY_A, pressed=true)}
+map/move_right={"deadzone": 0.5, "event": InputEventKey(physical_key=KEY_D, pressed=true)}
+map/jump={"deadzone": 0.5, "event": InputEventKey(physical_key=KEY_SPACE, pressed=true)}
